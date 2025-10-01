@@ -89,6 +89,6 @@ app.put("/notas/:id", (req, res) => {
     );
 });
 
-app.listen(3000, () => {
-    console.log("Servidor rodando em http://localhost:3000");
+app.listen(PORT, () => {
+    console.log("Servidor rodando em http://localhost:${PORT}");
 });

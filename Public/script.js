@@ -1,10 +1,14 @@
 let notes = [];
 let editingNoteId = null;
 
+const API_URL = window.location.hostname === 'localhost' 
+    ? 'http://localhost:3000' 
+    : '';  // 
+
 // Buscar notas do servidor (MySQL)
 async function loadNotes() {
     try {
-        const res = await fetch('http://localhost:3000/notas');
+        const res = await fetch(`${API_URL}/notas`);  // ← MUDANÇA AQUI
         if (!res.ok) throw new Error(await res.text());
         return await res.json();
     } catch (error) {
@@ -16,7 +20,9 @@ async function loadNotes() {
 //Salvar nota (POST ou PUT)
 async function saveNoteToServer(note) {
     const method = note.id ? 'PUT' : 'POST';
-    const url = note.id ? `http://localhost:3000/notas/${note.id}` : 'http://localhost:3000/notas';
+    const url = note.id 
+        ? `${API_URL}/notas/${note.id}`      
+        : `${API_URL}/notas`;                
 
     await fetch(url, {
         method,
@@ -27,7 +33,7 @@ async function saveNoteToServer(note) {
 
 //Excluir nota no servidor
 async function deleteNoteFromServer(id) {
-    await fetch(`http://localhost:3000/notas/${id}`, { method: 'DELETE' });
+    await fetch(`${API_URL}/notas/${id}`, { method: 'DELETE' }); 
 }
 
 //Abrir modal para criar/editar nota
