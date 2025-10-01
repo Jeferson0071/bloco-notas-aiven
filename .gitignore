@@ -1,0 +1,23 @@
+
+node_modules/
+
+# Arquivos de senhas
+.env
+.env.local
+.env.production
+
+# Certificados SSL
+ca.pem
+*.pem
+
+# Logs
+*.log
+npm-debug.log*
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
+
+# Arquivos temporários
+*.tmp
+*.temp
